@@ -8,8 +8,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-@Repository
-public class BookServiceImpl implements Bookservice {
+import org.springframework.stereotype.Service;
+//@Repository
+@Service
+public class BookServiceImpl implements BookService {
 	
 	
     private SessionFactory sessionFactory;
@@ -43,7 +45,7 @@ public class BookServiceImpl implements Bookservice {
 	}
 
 	@Override
-	public void deleteId(int bookId) {
+	public void deleteById(int bookId) {
 		// TODO Auto-generated method stub
 
 	}

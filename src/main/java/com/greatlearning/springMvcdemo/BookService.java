@@ -4,10 +4,10 @@ package com.greatlearning.springMvcdemo;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-@Service
-public interface Bookservice {
+//@Service
+public interface BookService {
 	public void save(Book book);
-	public void deleteId(int bookId);
+	public void deleteById(int bookId);
 	public Book findBook(int bookId);
 	public List<Book> findAll();
 	

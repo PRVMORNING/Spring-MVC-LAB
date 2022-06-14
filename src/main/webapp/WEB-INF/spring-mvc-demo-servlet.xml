@@ -14,51 +14,55 @@
 	<!--  Add support for component scanning -->
 	<context:component-scan base-package="com.greatlearning.springMvcdemo" />
 	
-	<bean class="org.springframework.orm.hibernate5.LocalSessionFactorybean" id="sFactory">
-	<property name="dataSource" ref="dmds"/>
-	<property name="annotatedClasses">
-	  <list>
-	  <value>com.greatlearning.springMvcdemo.Book</value>
-	  </list>
+	<!-- Define Spring MVC view resolver -->
 	
 	
-	</property>
-	
-	<property name="hibernateProperties">
-	<props>
-	<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
-	<prop key="hibernate.show_sql">true</prop>
-	<prop key="hibernate.hbm2ddl.auto">update</prop>
-	</props>	
-	</property>
-	
-	</bean>
-	
-	<bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" id="myTransactionManager">
-	<property name="sessionFactory" ref="sFactory"/>
-	</bean>
-	
-	
-
-    <bean 
-      class="org.springframework.jdbc.datasource.DriverManagerSource" id="dmds">
-      <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-      <property name="url" value="jdbc:mysql://localhost:3306/SpringMVC"/>
-      <property name="password" value="root"/>
-      <property name="username" value="prv123PRV#"/>
-    
-     </bean>
-     
-	
-	<!--  Define Spring MVC view resolver -->
+	<!-- Define Spring MVC view resolver -->
 	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		  <property name="prefix" value="/WEB-INF/view/" />
-		  <property name="suffix" value=".jsp" />
-
-      
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		id="jspViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
 	</bean>
 
+<!-- jdbc:mysql://localhost:3306/booksdb?useSSL=true&amp;serverTimezone=UTC -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver"></property>
+	<!-- 	<property name="url"
+			 value="jdbc:mysql://localhost:3306/booksdb"></property> -->
+			  <property name="url"
+			  value="jdbc:mysql://localhost:3306/booksdb?allowPublicKeyRetrieval=true&amp;useSSL=true&amp;serverTimezone=UTC"></property>
+	
+	<property name="username" value="root"></property>
+		<property name="password" value="prv123PRV#"></property>
+	</bean>
+     
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.greatlearning.springMvcdemo.Book</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="myTransactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	
 </beans>
 
 

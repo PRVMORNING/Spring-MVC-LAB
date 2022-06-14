@@ -413,5 +413,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/STUDY/MyProjects/Jakartajar/jakarta.servlet-api-4.0.2.jar"/>
+	<classpathentry kind="lib" path="D:/STUDY/MyProjects/MysqlConnectorJar/mysql-connector-java-8.0.20.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
