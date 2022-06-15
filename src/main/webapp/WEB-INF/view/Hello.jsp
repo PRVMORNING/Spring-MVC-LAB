@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Library </h1>
-Book jsp working
+<h1>Hello World</h1>
 </body>
 </html>
